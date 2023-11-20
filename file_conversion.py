@@ -12,11 +12,9 @@ def convert_and_move_file(j2k_file_path):
 
         jpg_file_path = os.path.join(jpg_folder, os.path.splitext(os.path.basename(j2k_file_path))[0] + '.jpg')
 
-        # Convert .j2k to .jpg using PIL
         img = Image.open(j2k_file_path)
         img.save(jpg_file_path, 'JPEG')
 
-        # Move files to respective folders
         os.replace(j2k_file_path, os.path.join(j2k_folder, os.path.basename(j2k_file_path)))
         print(f"Converted and moved: {j2k_file_path} -> {jpg_file_path}")
 
