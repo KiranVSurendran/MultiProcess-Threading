@@ -42,12 +42,12 @@ def process_folder(root):
         for future in futures:
             future.result()
 
-def convert_and_move_files(input_folder):
+def convert_and_move_files(input_folder, folder_name):
     with ProcessPoolExecutor() as executor:
         futures = []
 
         for dirs in os.listdir(input_folder):
-            root =  os.path.join(input_folder, dirs, 'Images')
+            root =  os.path.join(input_folder, dirs, folder_name)
             if os.path.isdir(root):
                 futures.append(executor.submit(process_folder,root))
 
@@ -56,5 +56,6 @@ def convert_and_move_files(input_folder):
 
 
 if __name__ == "__main__":
+    folder_name = "Images"
     folder_path = "/home/kinnan/Projects/Datasets/test_new"
     convert_and_move_files(folder_path)
